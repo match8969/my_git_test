@@ -24,6 +24,7 @@
 <input type="submit" value="登録">
 
 </form>
+<a href="search_group_kakeibo_action.php">検索画面に移動する</a>
 </body>
 
 </html> 

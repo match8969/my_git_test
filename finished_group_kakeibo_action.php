@@ -14,7 +14,10 @@ $stt = $pdo-> prepare('insert into group_kakeibo_action values(null, :action_dat
 	
 	
 echo $action_person,'の家計簿を、登録しました';
+print('<br />');
 echo '<a href="search_group_kakeibo_action.php">家計簿一覧表示</a>';
+print('<br />');
+print('<a href="input_group_kakeibo_action.php">入力画面に移動する</a>');
 
 /* ここどうかな bindValue　のやつを入れようかな、、、
  * 
