@@ -15,40 +15,74 @@ session_start();
 <form method="GET" action="process_group_kakeibo_action.php">
 開始月：
 <select name="start_year">
+
 <?php 
-	for($i =2015; $i <=2017; $i++){
-?>		
-	<option value="<?=$i ?>" ><?= $i?></option> 
-<?php 
+//以下、検索したもののあとで、検索した月日を残す仕掛け。
+$start_year = isset($_SESSION['start_year'])?$_SESSION['start_year']: "";// ここは条件演算子。
+	for($i =2015; $i <=2017; $i ++){
+		print('<option value="'.$i.'"');
+		if($i == $start_year){
+			print(' selected');
+		}
+	print('>'.$i.'</option>');
 	}
-?>
+?>		
+
 </select>年
 <select name="start_month">
 <?php 
-	for($i =1; $i <=12; $i++){
-?>		
-	<option value="<?= $i?>" ><?= $i?></option>
-<?php 	}?>
-
+//以下、検索したもののあとで、検索した月日を残す仕掛け。
+$start_month = isset($_SESSION['start_month'])?$_SESSION['start_month']: "";// ここは条件演算子。
+	for($i =1; $i <=12; $i ++){
+		print('<option value="'.$i.'"');
+		if($i == $start_month){
+			print(' selected');
+		}
+	print('>'.$i.'</option>');
+	}
+?>	
 </select>月~終了:
 <select name="end_year">
 <?php 
-	for($i =2015; $i <=2017; $i++){
-?>		
-	<option value="<?= $i?>" ><?= $i?></option>
-<?php } ?>
+//以下、検索したもののあとで、検索した月日を残す仕掛け。
+$end_year = isset($_SESSION['end_year'])?$_SESSION['end_year']: "";// ここは条件演算子。
+	for($i =2015; $i <=2017; $i ++){
+		print('<option value="'.$i.'"');
+		if($i == $end_year){
+			print(' selected');
+		}
+	print('>'.$i.'</option>');
+	}
+?>
 </select>年
 <select name="end_month">
 <?php 
-	for($i =1; $i <=12; $i++){
-?>		
-	<option value="<?= $i?>" ><?= $i?></option>
-<?php } ?>
-
+//以下、検索したもののあとで、検索した月日を残す仕掛け。
+$end_month = isset($_SESSION['end_month'])?$_SESSION['end_month']: "";// ここは条件演算子。
+	for($i =1; $i <=12; $i ++){
+		print('<option value="'.$i.'"');
+		if($i == $end_month){
+			print(' selected');
+		}
+	print('>'.$i.'</option>');
+	}
+?>
 </select>月
 
 <input type="submit" value="検索" />
 </form>
+<ul>
+<?php 
+ if(isset($_SESSION['errors'])){
+ 	foreach($_SESSION['errors'] as $error){
+ 		print("<li>{$error}</li>");
+ 	}
+ }
+
+?>
+
+</ul>
+
 <hr />
 
 <h2>以下の検索結果が見つかりました。</h2>
