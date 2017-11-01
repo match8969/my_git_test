@@ -10,12 +10,35 @@ require_once 'DbManager.php';
 <body>
 <h1>検索結果</h1>
 
+<form method="get" action="process_group_kakeibo_action"> 
+期間検索:
+開始：
 
+</form>
+<hr />
 
 <h2>以下の検索結果が見つかりました。</h2>
+
+
 <table border="1">
 <tr><th>日付</th><th>人物</th><th>費目</th><th>メモ</th><th>入金額</th><th>出金額</th></tr>
 
+<?php 
+if (isset($_SESSION['result'])){
+	$result=$_SESSION['result'];
+	foreach($result as $row){
+		?>
+<tr>
+<td><?=$row['action_date'] ?></td>
+<td><?=$row['action_person'] ?></td>
+<td><?=$row['himoku'] ?></td>
+<td><?=$row['memo'] ?></td>
+<td class="price"><?=$row['income'] ?></td>
+<td class="price"><?=$row['outcome'] ?></td>
+</tr>
+
+
+<?php } } ?>
 
 
 <?php 

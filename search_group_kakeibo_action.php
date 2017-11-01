@@ -10,6 +10,57 @@
 <input type="date" name="action_date">
 <input type="submit" value="検索">
 </form>
+<h3>期間検索を行う</h3>
+<form method="GET" action="process_group_kakeibo_action.php">
+開始：
+<select name="start_year">
+<?php 
+	for($i =2015; $i <=2017; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php 
+	}
+?>
+</select>年
+<select name="start_month">
+<?php 
+	for($i =1; $i <=12; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php 
+	}
+?>
+
+</select>月~終了:
+<select name="start_year">
+<?php 
+	for($i =2015; $i <=2017; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php 
+	}
+?>
+</select>年
+<select name="start_month">
+<?php 
+	for($i =1; $i <=12; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php 
+	}
+?>
+
+</select>月
+
+
+
+
+
+<input type="submit" value="検索" />
+</form>
+
+
+
 <h2>人物で検索</h2>
 <form action="output_group_kakeibo_action.php" method="post">
 <input type="text" name="action_person">
