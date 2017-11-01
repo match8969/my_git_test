@@ -10,6 +10,7 @@
 <input type="date" name="action_date">
 <input type="submit" value="検索">
 </form>
+<!--  
 <h3>期間検索を行う</h3>
 <form method="GET" action="process_group_kakeibo_action.php">
 開始：
@@ -17,7 +18,7 @@
 <?php 
 	for($i =2015; $i <=2017; $i++){
 ?>		
-	<option value="<?= $i?>" ><?= $i?></option>
+	<option value="<?=$i ?>" ><?= $i?></option> 
 <?php 
 	}
 ?>
@@ -56,9 +57,29 @@
 
 
 
+<?php 
+if (isset($_SESSION['result'])){
+	$result=$_SESSION['result'];
+	foreach($result as $row){
+		?>
+<tr>
+<td><?=$row['action_date'] ?></td>
+<td><?=$row['action_person'] ?></td>
+<td><?=$row['himoku'] ?></td>
+<td><?=$row['memo'] ?></td>
+<td class="price"><?=$row['income'] ?></td>
+<td class="price"><?=$row['outcome'] ?></td>
+</tr>
+
+
+<?php } } ?>
+
+
+
+
 <input type="submit" value="検索" />
 </form>
-
+-->
 
 
 <h2>人物で検索</h2>

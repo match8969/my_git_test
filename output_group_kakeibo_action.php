@@ -1,5 +1,6 @@
 <?php 
 require_once 'DbManager.php';
+session_start();
 ?>
 
 <html>
@@ -10,10 +11,43 @@ require_once 'DbManager.php';
 <body>
 <h1>検索結果</h1>
 
-<form method="get" action="process_group_kakeibo_action"> 
-期間検索:
-開始：
+<h3>期間検索を行う</h3>
+<form method="GET" action="process_group_kakeibo_action.php">
+開始月：
+<select name="start_year">
+<?php 
+	for($i =2015; $i <=2017; $i++){
+?>		
+	<option value="<?=$i ?>" ><?= $i?></option> 
+<?php 
+	}
+?>
+</select>年
+<select name="start_month">
+<?php 
+	for($i =1; $i <=12; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php 	}?>
 
+</select>月~終了:
+<select name="end_year">
+<?php 
+	for($i =2015; $i <=2017; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php } ?>
+</select>年
+<select name="end_month">
+<?php 
+	for($i =1; $i <=12; $i++){
+?>		
+	<option value="<?= $i?>" ><?= $i?></option>
+<?php } ?>
+
+</select>月
+
+<input type="submit" value="検索" />
 </form>
 <hr />
 
@@ -23,11 +57,12 @@ require_once 'DbManager.php';
 <table border="1">
 <tr><th>日付</th><th>人物</th><th>費目</th><th>メモ</th><th>入金額</th><th>出金額</th></tr>
 
+
 <?php 
 if (isset($_SESSION['result'])){
 	$result=$_SESSION['result'];
 	foreach($result as $row){
-		?>
+?>
 <tr>
 <td><?=$row['action_date'] ?></td>
 <td><?=$row['action_person'] ?></td>
@@ -36,11 +71,11 @@ if (isset($_SESSION['result'])){
 <td class="price"><?=$row['income'] ?></td>
 <td class="price"><?=$row['outcome'] ?></td>
 </tr>
-
-
 <?php } } ?>
+</table>
 
-
+<hr>
+<table>
 <?php 
 $pdo = getDb();
 try {
@@ -79,6 +114,7 @@ try {
 	print('エラーメッセージ'.$e->getMessage());
 }
 ?>
+
 </table>
 <a href="search_group_kakeibo_action.php" >家計簿検索ページにもどる</a><br />
 <a href="input_group_kakeibo_action.php">入力画面に移動する</a>
